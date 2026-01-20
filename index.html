@@ -24,22 +24,29 @@
 
   <style>
     :root{
-      --bg:#070A10;
-      --bg2:#0B1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.12);
-      --text:#EAF1FF;
-      --muted: rgba(234,241,255,.72);
-      --muted2: rgba(234,241,255,.55);
-      --cyan:#31D4FF;
+      /* Light theme */
+      --bg:#F6F8FF;
+      --bg2:#FFFFFF;
+      --card: rgba(10,18,40,.04);
+      --card2: rgba(10,18,40,.06);
+      --line: rgba(10,18,40,.10);
+      --text:#0B1226;
+      --muted: rgba(11,18,38,.72);
+      --muted2: rgba(11,18,38,.58);
+
+      --cyan:#0AA6D8;
       --blue:#2B6CFF;
-      --violet:#8B5CFF;
-      --good:#49F2A1;
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --violet:#7A4CFF;
+      --good:#0FA968;
+
+      --shadow: 0 18px 60px rgba(10,18,40,.12);
       --radius: 18px;
       --radius2: 26px;
       --max: 1120px;
+
+      /* Floating WhatsApp sizing */
+      --fab-h: 56px;
+      --fab-gap: 16px;
     }
 
     *{ box-sizing:border-box; }
@@ -49,9 +56,9 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(900px 600px at 20% 0%, rgba(49,212,255,.18), transparent 55%),
-        radial-gradient(900px 700px at 100% 20%, rgba(139,92,255,.14), transparent 55%),
-        radial-gradient(900px 700px at 60% 110%, rgba(43,108,255,.12), transparent 55%),
+        radial-gradient(900px 600px at 20% 0%, rgba(10,166,216,.16), transparent 55%),
+        radial-gradient(900px 700px at 100% 20%, rgba(122,76,255,.12), transparent 55%),
+        radial-gradient(900px 700px at 60% 110%, rgba(43,108,255,.10), transparent 55%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
@@ -61,24 +68,24 @@
 
     .wrap{ width: min(var(--max), calc(100% - 40px)); margin:0 auto; }
 
-    /* Subtle grid + particles */
+    /* Subtle grid */
     .bg-grid{
       position:fixed; inset:0;
       pointer-events:none;
       background:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+        linear-gradient(rgba(10,18,40,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,18,40,.05) 1px, transparent 1px);
       background-size: 42px 42px;
       mask-image: radial-gradient(closest-side at 40% 25%, black 0%, transparent 70%);
-      opacity:.35;
+      opacity:.50;
       z-index:-1;
     }
 
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(14px);
-      background: rgba(7,10,16,.72);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.72);
+      border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
@@ -91,10 +98,10 @@
     .logo{
       width:42px; height:42px;
       border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.8);
+      border:1px solid var(--line);
       overflow:hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      box-shadow: 0 12px 40px rgba(10,18,40,.10);
       flex:0 0 auto;
     }
     .brand h1{
@@ -124,8 +131,8 @@
       display:inline-flex; align-items:center; gap:8px;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
+      background: rgba(10,18,40,.04);
+      border:1px solid var(--line);
       color:var(--muted);
       font-size: 13px;
       white-space:nowrap;
@@ -134,21 +141,21 @@
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding: 11px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(49,212,255,.18), rgba(139,92,255,.14));
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(10,166,216,.16), rgba(122,76,255,.12));
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       cursor:pointer;
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      transition: transform .15s ease, filter .15s ease, background .15s ease;
+      box-shadow: 0 14px 40px rgba(10,18,40,.10);
+      transition: transform .15s ease, filter .15s ease;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
-    .btn:active{ transform: translateY(0px); filter: brightness(0.98); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .btn:active{ transform: translateY(0px); filter: brightness(.99); }
 
     .btn.secondary{
-      background: rgba(255,255,255,.06);
-      font-weight: 650;
+      background: rgba(255,255,255,.85);
+      font-weight: 750;
       box-shadow: none;
     }
 
@@ -165,8 +172,8 @@
     }
     .hero-card{
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
@@ -178,11 +185,11 @@
       display:inline-flex; align-items:center; gap:10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(49,212,255,.12);
-      border: 1px solid rgba(49,212,255,.25);
-      color: rgba(234,241,255,.92);
+      background: rgba(10,166,216,.12);
+      border: 1px solid rgba(10,166,216,.25);
+      color: rgba(11,18,38,.92);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing:.2px;
       margin-bottom: 14px;
     }
@@ -207,9 +214,9 @@
       display:inline-flex; align-items:center; gap:8px;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      color: rgba(234,241,255,.86);
+      background: rgba(255,255,255,.82);
+      border:1px solid var(--line);
+      color: rgba(11,18,38,.88);
       font-size: 13px;
     }
     .badge strong{ color: var(--good); font-weight: 900; }
@@ -232,9 +239,9 @@
 
     .info-card{
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 16px 55px rgba(0,0,0,.40);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 16px 55px rgba(10,18,40,.10);
       overflow:hidden;
     }
     .info-card .inner{
@@ -246,13 +253,13 @@
       display:flex; align-items:flex-start; gap:10px;
       padding: 12px 12px;
       border-radius: 16px;
-      background: rgba(0,0,0,.16);
-      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(10,18,40,.03);
+      border: 1px solid var(--line);
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: var(--cyan);
-      box-shadow: 0 0 0 5px rgba(49,212,255,.14);
+      box-shadow: 0 0 0 5px rgba(10,166,216,.12);
       margin-top: 5px;
       flex:0 0 auto;
     }
@@ -270,22 +277,24 @@
 
     .mini-gallery{
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
       overflow:hidden;
       position:relative;
       min-height: 240px;
+      box-shadow: 0 16px 55px rgba(10,18,40,.10);
     }
     .mini-gallery .strip{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       padding: 14px;
+      padding-top: 62px;
     }
     .mini-gallery .ph{
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+      border: 1px solid var(--line);
+      background: rgba(10,18,40,.04);
       overflow:hidden;
       height: 160px;
       position:relative;
@@ -295,7 +304,7 @@
       height:100%;
       object-fit: cover;
       transform: scale(1.02);
-      filter: saturate(1.05) contrast(1.03);
+      filter: saturate(1.04) contrast(1.02);
     }
     .mini-gallery .label{
       position:absolute;
@@ -304,12 +313,12 @@
       right: 14px;
       padding: 12px 14px;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(49,212,255,.18), rgba(139,92,255,.14));
-      border: 1px solid rgba(255,255,255,.16);
-      color: rgba(234,241,255,.95);
-      font-weight: 850;
+      background: linear-gradient(135deg, rgba(10,166,216,.14), rgba(122,76,255,.10));
+      border: 1px solid var(--line);
+      color: rgba(11,18,38,.92);
+      font-weight: 900;
       letter-spacing:.2px;
-      box-shadow: 0 16px 55px rgba(0,0,0,.35);
+      box-shadow: 0 16px 55px rgba(10,18,40,.10);
       font-size: 13px;
     }
 
@@ -341,10 +350,10 @@
     }
     .card{
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
       padding: 16px 16px;
-      box-shadow: 0 16px 55px rgba(0,0,0,.35);
+      box-shadow: 0 16px 55px rgba(10,18,40,.10);
     }
     .card h3{
       margin: 0 0 6px;
@@ -359,15 +368,15 @@
     }
     .tick{
       display:flex; gap:10px; margin-top: 10px;
-      color: rgba(234,241,255,.9);
+      color: rgba(11,18,38,.92);
       font-size: 13px;
       line-height: 1.35;
     }
     .tick i{
       width: 18px; height: 18px;
       border-radius: 999px;
-      background: rgba(73,242,161,.14);
-      border: 1px solid rgba(73,242,161,.28);
+      background: rgba(15,169,104,.12);
+      border: 1px solid rgba(15,169,104,.22);
       display:inline-flex; align-items:center; justify-content:center;
       flex:0 0 auto;
       margin-top: 1px;
@@ -389,12 +398,12 @@
     .gitem{
       grid-column: span 6;
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
       overflow:hidden;
       position:relative;
       min-height: 230px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.40);
+      box-shadow: 0 18px 60px rgba(10,18,40,.12);
     }
     .gitem img{
       width:100%;
@@ -406,19 +415,19 @@
       position:absolute; inset:auto 12px 12px 12px;
       padding: 12px 14px;
       border-radius: 18px;
-      background: rgba(7,10,16,.66);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
       backdrop-filter: blur(10px);
-      color: rgba(234,241,255,.92);
+      color: rgba(11,18,38,.92);
       font-size: 12.5px;
       line-height: 1.35;
     }
 
     .cta-block{
       border-radius: 28px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(135deg, rgba(49,212,255,.14), rgba(139,92,255,.12));
-      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(10,166,216,.12), rgba(122,76,255,.10));
+      box-shadow: 0 22px 70px rgba(10,18,40,.12);
       overflow:hidden;
       position:relative;
     }
@@ -436,7 +445,7 @@
     }
     .cta-block p{
       margin:0;
-      color: rgba(234,241,255,.82);
+      color: rgba(11,18,38,.78);
       font-size: 13.5px;
       line-height: 1.45;
     }
@@ -446,44 +455,51 @@
 
     /* Footer */
     footer{
-      border-top: 1px solid rgba(255,255,255,.10);
+      border-top: 1px solid var(--line);
       padding: 18px 0 32px;
       color: var(--muted2);
       font-size: 12.5px;
       position:relative;
       margin-top: 18px;
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(10px);
     }
     .foot{
       display:flex; align-items:center; justify-content:space-between; gap: 12px;
       flex-wrap:wrap;
     }
     .foot a{
-      color: rgba(234,241,255,.86);
+      color: rgba(11,18,38,.90);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    /* Floating WhatsApp */
+    /* Floating WhatsApp - adjusted to never block content on mobile */
     .wa-fab{
       position: fixed;
       right: 16px;
-      bottom: 16px;
+      bottom: calc(var(--fab-gap) + env(safe-area-inset-bottom));
       z-index: 50;
+
       display:flex;
       align-items:center;
       gap: 10px;
-      padding: 11px 12px;
+
+      height: var(--fab-h);
+      padding: 10px 12px;
+
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(7,10,16,.72);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.82);
       backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.5);
+      box-shadow: 0 18px 60px rgba(10,18,40,.16);
+
       cursor:pointer;
       user-select:none;
       transition: transform .15s ease, filter .15s ease;
     }
-    .wa-fab:hover{ transform: translateY(-1px); filter: brightness(1.06); }
-    .wa-fab:active{ transform: translateY(0px); filter: brightness(.98); }
+    .wa-fab:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .wa-fab:active{ transform: translateY(0px); filter: brightness(.99); }
 
     .wa-icon{
       width: 40px;
@@ -491,8 +507,8 @@
       border-radius: 999px;
       display:grid;
       place-items:center;
-      background: rgba(73,242,161,.16);
-      border: 1px solid rgba(73,242,161,.25);
+      background: rgba(15,169,104,.14);
+      border: 1px solid rgba(15,169,104,.22);
       flex:0 0 auto;
     }
     .wa-icon svg{ width: 21px; height: 21px; }
@@ -510,7 +526,12 @@
       color: var(--muted);
     }
 
-    /* Small screens */
+    /* Reserve space so FAB never covers footer / last CTA on mobile */
+    .page-safe-bottom{
+      padding-bottom: calc(var(--fab-h) + (var(--fab-gap) * 2) + env(safe-area-inset-bottom));
+    }
+
+    /* Responsive */
     @media (max-width: 980px){
       .hero-grid{ grid-template-columns: 1fr; }
       .brand h1, .brand p{ max-width: 64vw; }
@@ -523,6 +544,10 @@
     }
 
     @media (max-width: 520px){
+      :root{
+        --fab-h: 54px;
+        --fab-gap: 14px;
+      }
       .wrap{ width: calc(100% - 28px); }
       .nav{ padding: 12px 0; }
       .pill{ display:none; }
@@ -530,8 +555,14 @@
       .brand p{ font-size: 11.5px; }
       .hero-card .inner{ padding: 22px 18px; }
       .title{ letter-spacing: -0.3px; }
-      .wa-fab{ right: 12px; bottom: 12px; }
+
+      /* On very small screens, keep FAB compact (text hidden) */
       .wa-text span{ display:none; }
+      .wa-fab{
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        padding: 10px 10px;
+      }
     }
   </style>
 
@@ -573,7 +604,7 @@
     </div>
   </header>
 
-  <main>
+  <main class="page-safe-bottom">
     <section class="hero">
       <div class="wrap">
         <div class="hero-grid">
@@ -771,12 +802,12 @@
     </footer>
   </main>
 
-  <!-- Floating WhatsApp -->
+  <!-- Floating WhatsApp (no tapa contenido en mobile) -->
   <div class="wa-fab" id="waFab" role="button" aria-label="Contactar por WhatsApp">
     <div class="wa-icon" aria-hidden="true">
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 3C9.372 3 4 8.238 4 14.7c0 2.53.84 4.87 2.27 6.78L5 29l7.66-1.99c1.98 1.04 4.25 1.63 6.34 1.63 6.628 0 12-5.238 12-11.7S22.628 3 16 3Z" stroke="rgba(234,241,255,.88)" stroke-width="1.4"/>
-        <path d="M12.6 10.8c.24-.57.5-.58.73-.58h.63c.2 0 .52.07.79.6.27.53.92 1.9 1 2.04.08.14.13.31.02.5-.11.19-.16.31-.32.48-.16.17-.34.38-.48.51-.16.14-.33.29-.14.57.19.28.86 1.38 1.85 2.24 1.28 1.11 2.36 1.46 2.7 1.62.34.16.54.14.74-.09.2-.23.85-.99 1.08-1.33.23-.34.45-.28.76-.17.31.11 1.95.9 2.28 1.07.33.17.55.26.63.4.08.14.08.8-.19 1.57-.27.77-1.57 1.48-2.17 1.57-.56.08-1.26.12-2.04-.12-.47-.14-1.07-.34-1.85-.7-3.25-1.44-5.37-4.77-5.53-4.99-.16-.22-1.32-1.72-1.32-3.28 0-1.56.83-2.33 1.12-2.65Z" fill="rgba(234,241,255,.88)"/>
+        <path d="M16 3C9.372 3 4 8.238 4 14.7c0 2.53.84 4.87 2.27 6.78L5 29l7.66-1.99c1.98 1.04 4.25 1.63 6.34 1.63 6.628 0 12-5.238 12-11.7S22.628 3 16 3Z" stroke="rgba(11,18,38,.92)" stroke-width="1.4"/>
+        <path d="M12.6 10.8c.24-.57.5-.58.73-.58h.63c.2 0 .52.07.79.6.27.53.92 1.9 1 2.04.08.14.13.31.02.5-.11.19-.16.31-.32.48-.16.17-.34.38-.48.51-.16.14-.33.29-.14.57.19.28.86 1.38 1.85 2.24 1.28 1.11 2.36 1.46 2.7 1.62.34.16.54.14.74-.09.2-.23.85-.99 1.08-1.33.23-.34.45-.28.76-.17.31.11 1.95.9 2.28 1.07.33.17.55.26.63.4.08.14.08.8-.19 1.57-.27.77-1.57 1.48-2.17 1.57-.56.08-1.26.12-2.04-.12-.47-.14-1.07-.34-1.85-.7-3.25-1.44-5.37-4.77-5.53-4.99-.16-.22-1.32-1.72-1.32-3.28 0-1.56.83-2.33 1.12-2.65Z" fill="rgba(11,18,38,.92)"/>
       </svg>
     </div>
     <div class="wa-text">
@@ -787,15 +818,12 @@
 
   <script>
     (function(){
-      // WhatsApp
-      // Formato internacional recomendado (sin +). Ajustado a AR: 54 9 + (código de área) + número.
-      // Si querés cambiarlo, editá WA_PHONE.
+      // WhatsApp (AR). Si cambiás el número, editá WA_PHONE y WA_DISPLAY.
       const WA_PHONE = "5491122334455";
       const WA_DISPLAY = "1122334455";
       const WA_TEXT = encodeURIComponent("Hola! Quiero pedir presupuesto sin cargo. Soy de Buenos Aires. Mi consulta es: ");
       const WA_URL = `https://wa.me/${WA_PHONE}?text=${WA_TEXT}`;
 
-      // Render
       document.getElementById("year").textContent = new Date().getFullYear();
       document.getElementById("waDisplay").textContent = WA_DISPLAY;
 
@@ -803,31 +831,30 @@
         window.open(WA_URL, "_blank", "noopener");
       }
 
-      // Buttons
-      const btns = ["btnWhatsappTop","btnWhatsappHero","btnWhatsappCta","waFab"];
-      btns.forEach(id => {
+      ["btnWhatsappTop","btnWhatsappHero","btnWhatsappCta","waFab"].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.addEventListener("click", goWhatsApp);
       });
 
-      // Keep floating WA above footer on short screens (avoid covering footer)
+      // Extra: si el footer entra en pantalla, levantamos el FAB para que no lo tape
       const waFab = document.getElementById("waFab");
       const footer = document.querySelector("footer");
 
       function adjustFab(){
+        if(!waFab || !footer) return;
+
         const footerRect = footer.getBoundingClientRect();
         const vh = window.innerHeight || document.documentElement.clientHeight;
 
-        // If footer is visible and close to bottom, lift the FAB up
+        // base bottom from CSS (approx) + safe area handled in CSS, we add extra lift if overlapping
         const overlap = vh - footerRect.top; // positive when footer enters viewport
-        const baseBottom = 16;
+        const base = 16;
 
         if(overlap > 0){
-          // Lift by overlap + spacing, capped
-          const lift = Math.min(overlap + 16, 140);
-          waFab.style.bottom = (baseBottom + lift) + "px";
+          const lift = Math.min(overlap + 16, 160);
+          waFab.style.bottom = `calc(${base + lift}px + env(safe-area-inset-bottom))`;
         }else{
-          waFab.style.bottom = baseBottom + "px";
+          waFab.style.bottom = `calc(${base}px + env(safe-area-inset-bottom))`;
         }
       }
 
